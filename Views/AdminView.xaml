@@ -7,35 +7,57 @@
         mc:Ignorable="d"
         Title="Administrare - Dicționarul explicativ român" Height="500" Width="700"
         Icon="../Resources/Images/icon.ico">
-    <Grid Margin="10">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="5">
-            <ComboBox x:Name="categoryComboBox" Width="150" Margin="5"/>
-            <TextBox x:Name="searchTextBox" Width="250" Margin="5"/>
-            <Button Content="Adaugă Cuvânt" Width="100" Margin="5"/>
-        </StackPanel>
+    <DockPanel LastChildFill="True">
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="Caută cuvinte"/>
+            <MenuItem Header="Divertisment"/>
+            <MenuItem Header="Administrare"/>
+        </Menu>
+        <Grid Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
-        <ListView x:Name="wordsListView" Grid.Row="1" Margin="5">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="Cuvânt" Width="150"/>
-                    <GridViewColumn Header="Descriere" Width="350"/>
-                    <GridViewColumn Header="Acțiuni" Width="Auto">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <Button Content="Editează" Margin="2"/>
-                                    <Button Content="Șterge" Margin="2"/>
-                                </StackPanel>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                </GridView>
-            </ListView.View>
-        </ListView>
-    </Grid>
+            <Grid Grid.Row="0" Margin="0 0 0 10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="6*"/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="0" Content="Caută:" Margin="0 0 10 0" HorizontalAlignment="Right"/>
+                <TextBox Grid.Column="1" Margin="10 0 10 0" Height="20"/>
+            </Grid>
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+                <ListView Grid.Column="0">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Cuvânt" Width="Auto"/>
+                            <GridViewColumn Header="Definiție" Width="Auto"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+                <StackPanel Grid.Column="1" Orientation="Vertical" Margin="10">
+                    <Label Content="Imagine (opțional)" Height="30"/>
+                    <Button Content="Încarcă imagine" Height="30" Margin="10 0 10 0"/>
+                    <Image Height="100" Margin="0,10,0,10"/>
+                    <Label Content="Cuvânt*" Height="30"/>
+                    <TextBox Margin="0,0,0,10" Height="20"/>
+                    <Label Content="Definiție*" Height="30"/>
+                    <TextBox Margin="0,0,0,10" Height="50" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto"/>
+
+                    <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Button Content="Adaugă" Margin="0,0,10,0" Width="Auto" Height="30" Padding="10 5 10 5"/>
+                        <Button Content="Editează" Margin="0,0,10,0" Width="Auto" Height="30" Padding="10 5 10 5"/>
+                        <Button Content="Șterge" Margin="0,0,10,0" Width="Auto" Height="30" Padding="10 5 10 5"/>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </DockPanel>
 </Window>
