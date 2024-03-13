@@ -1,0 +1,41 @@
+﻿<Window x:Class="WpfDictionary.Views.AdminView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfDictionary.Views"
+        mc:Ignorable="d"
+        Title="Administrare - Dicționarul explicativ român" Height="500" Width="700"
+        Icon="../Resources/Images/icon.ico">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="5">
+            <ComboBox x:Name="categoryComboBox" Width="150" Margin="5"/>
+            <TextBox x:Name="searchTextBox" Width="250" Margin="5"/>
+            <Button Content="Adaugă Cuvânt" Width="100" Margin="5"/>
+        </StackPanel>
+
+        <ListView x:Name="wordsListView" Grid.Row="1" Margin="5">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Cuvânt" Width="150"/>
+                    <GridViewColumn Header="Descriere" Width="350"/>
+                    <GridViewColumn Header="Acțiuni" Width="Auto">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Button Content="Editează" Margin="2"/>
+                                    <Button Content="Șterge" Margin="2"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
+</Window>
