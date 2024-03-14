@@ -10,17 +10,17 @@ namespace WpfDictionary.Models
     {
         public string Term { get; set; }
         public string Description { get; set; }
-        public string Category { get; set; }
+        public Category Category { get; set; }
         public string ImagePath { get; set; }    
 
         public Word() {}
 
-        public Word(string term, string description, string category, string imagePath = null)
+        public Word(string term, string description, Category category, string imagePath)
         {
             Term = term;
             Description = description;
             Category = category;
-            ImagePath = imagePath ?? "/Resources/Images/Words/no-image-available.jpg";
+            ImagePath = imagePath;
         }
     }
 }

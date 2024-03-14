@@ -4,9 +4,14 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfDictionary.Views"
+        xmlns:MVVM="clr-namespace:WpfDictionary.MVVM"
         mc:Ignorable="d"
-        Title="Administrare - Dicționarul explicativ român" Height="500" Width="700"
+        Title="Administrare - Dicționarul explicativ român" Height="650" Width="800"
         Icon="../Resources/Images/icon.ico">
+    <Window.Resources>
+        <MVVM:PathToImageSourceConverter x:Key="PathToImageSourceConverter"/>
+    </Window.Resources>
+
 
     <DockPanel LastChildFill="True">
         <Menu DockPanel.Dock="Top">
@@ -26,7 +31,7 @@
                     <ColumnDefinition Width="6*"/>
                 </Grid.ColumnDefinitions>
                 <Label Grid.Column="0" Content="Caută:" Margin="0 0 10 0" HorizontalAlignment="Right"/>
-                <TextBox Grid.Column="1" Margin="10 0 10 0" Height="20"/>
+                <TextBox Grid.Column="1" Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" Margin="10 0 10 0" Height="20"/>
             </Grid>
 
             <Grid Grid.Row="1">
@@ -34,27 +39,31 @@
                     <ColumnDefinition Width="3*"/>
                     <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
-                <ListView Grid.Column="0">
+                <ListView Grid.Column="0" ItemsSource="{Binding FilteredWords}" SelectedItem="{Binding SelectedWord}">
                     <ListView.View>
                         <GridView>
-                            <GridViewColumn Header="Cuvânt" Width="Auto"/>
-                            <GridViewColumn Header="Definiție" Width="Auto"/>
+                            <GridViewColumn Header="Cuvânt" DisplayMemberBinding="{Binding Term}" Width="Auto"/>
+                            <GridViewColumn Header="Definiție" DisplayMemberBinding="{Binding Description}" Width="Auto"/>
                         </GridView>
                     </ListView.View>
                 </ListView>
                 <StackPanel Grid.Column="1" Orientation="Vertical" Margin="10">
                     <Label Content="Imagine (opțional)" Height="30"/>
-                    <Button Content="Încarcă imagine" Height="30" Margin="10 0 10 0"/>
-                    <Image Height="100" Margin="0,10,0,10"/>
+                    <Button Command="{Binding LoadImageCommand}" Content="Încarcă imagine" Height="20" Margin="10 0 10 0"/>
+                    <Image Source="{Binding WordImagePath, Converter={StaticResource PathToImageSourceConverter}}" Height="100" Margin="0,10,0,10"/>
                     <Label Content="Cuvânt*" Height="30"/>
-                    <TextBox Margin="0,0,0,10" Height="20"/>
+                    <TextBox Text="{Binding WordTerm, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,10" Height="20"/>
+                    <Label Content="Selectează categoria*" Height="30"/>
+                    <ComboBox ItemsSource="{Binding Categories}" DisplayMemberPath="Name" SelectedItem="{Binding SelectedCategory}" Margin="0,0,0,10" Height="20"/>
+                    <Label Content="SAU" Height="30" HorizontalAlignment="Center"/>
+                    <Label Content="Adaugă categorie nouă*" Height="30"/>
+                    <TextBox Text="{Binding NewCategoryName, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,10" Height="20"/>
                     <Label Content="Definiție*" Height="30"/>
-                    <TextBox Margin="0,0,0,10" Height="50" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto"/>
+                    <TextBox Text="{Binding WordDescription, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,10" Height="50" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto"/>
 
                     <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center">
-                        <Button Content="Adaugă" Margin="0,0,10,0" Width="Auto" Height="30" Padding="10 5 10 5"/>
-                        <Button Content="Editează" Margin="0,0,10,0" Width="Auto" Height="30" Padding="10 5 10 5"/>
-                        <Button Content="Șterge" Margin="0,0,10,0" Width="Auto" Height="30" Padding="10 5 10 5"/>
+                        <Button Command="{Binding AddOrUpdateWordCommand}" Content="Adaugă/Actualizează" Margin="0,0,10,0" Width="Auto" Height="30" Padding="10 5 10 5"/>
+                        <Button Command="{Binding DeleteWordCommand}" Content="Șterge" Margin="0,0,10,0" Width="Auto" Height="30" Padding="10 5 10 5"/>
                     </StackPanel>
                 </StackPanel>
             </Grid>

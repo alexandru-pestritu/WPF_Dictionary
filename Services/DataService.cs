@@ -12,8 +12,8 @@ namespace WpfDictionary.Services
 {
     public class DataService
     {
-        private const string WordsFilePath = "../Resources/Data/words.xml";
-        private const string CategoriesFilePath = "../Resources/Data/categories.xml";
+        private const string WordsFilePath = "C:\\Users\\pestr\\source\\WpfDictionary\\Resources\\Data\\words.xml";
+        private const string CategoriesFilePath = "C:\\Users\\pestr\\source\\WpfDictionary\\Resources\\Data\\categories.xml";
 
         public ObservableCollection<Word> Words { get; private set; }
         public ObservableCollection<Category> Categories { get; private set; }
