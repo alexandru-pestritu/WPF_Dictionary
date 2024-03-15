@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using WpfDictionary.Services;
+using WpfDictionary.ViewModels;
 
 namespace WpfDictionary.Views
 {
@@ -23,6 +24,8 @@ namespace WpfDictionary.Views
         public EntertainmentView()
         {
             InitializeComponent();
+            EntertainmentViewModel entertainmentViewModel = new EntertainmentViewModel();
+            this.DataContext = entertainmentViewModel;
             this.Closing += EntertainmentView_Closing;
         }
 
