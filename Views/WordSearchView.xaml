@@ -15,8 +15,8 @@
     <DockPanel LastChildFill="True">
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="Caută cuvinte"/>
-            <MenuItem Header="Divertisment"/>
-            <MenuItem Header="Administrare"/>
+            <MenuItem Header="Divertisment" Click="MenuItem_Click"/>
+            <MenuItem Header="Administrare" Click="MenuItem_Click_1"/>
         </Menu>
 
         <Grid Margin="10">

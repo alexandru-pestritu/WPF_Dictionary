@@ -1,8 +1,7 @@
 ﻿<Application x:Class="WpfDictionary.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:WpfDictionary"
-             StartupUri="/Views/WordSearchView.xaml">
+             xmlns:local="clr-namespace:WpfDictionary">
     <Application.Resources>
          
     </Application.Resources>

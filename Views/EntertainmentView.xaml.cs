@@ -12,26 +12,23 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using WpfDictionary.Services;
-using WpfDictionary.ViewModels;
 
 namespace WpfDictionary.Views
 {
     /// <summary>
-    /// Interaction logic for WordSearchView.xaml
+    /// Interaction logic for EntertainmentView.xaml
     /// </summary>
-    public partial class WordSearchView : Window
+    public partial class EntertainmentView : Window
     {
-        public WordSearchView()
+        public EntertainmentView()
         {
             InitializeComponent();
-            WordSearchViewModel wordSearchViewModel = new WordSearchViewModel();
-            this.DataContext = wordSearchViewModel;
-            this.Closing += WordSearchView_Closing;
+            this.Closing += EntertainmentView_Closing;
         }
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
-            WindowManager.ShowWindow("EntertainmentView");
+            WindowManager.ShowWindow("WordSearchView");
         }
 
         private void MenuItem_Click_1(object sender, RoutedEventArgs e)
@@ -39,7 +36,7 @@ namespace WpfDictionary.Views
             WindowManager.ShowWindow("AdminView");
         }
 
-        private void WordSearchView_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        private void EntertainmentView_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             Application.Current.Shutdown();
         }

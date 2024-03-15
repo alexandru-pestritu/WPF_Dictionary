@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using WpfDictionary.Services;
 using WpfDictionary.ViewModels;
 
 namespace WpfDictionary.Views
@@ -25,6 +26,22 @@ namespace WpfDictionary.Views
             InitializeComponent();
             AdminViewModel adminViewModel = new AdminViewModel();
             this.DataContext = adminViewModel;
+            this.Closing += AdminView_Closing;
+        }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            WindowManager.ShowWindow("WordSearchView");
+        }
+
+        private void MenuItem_Click_1(object sender, RoutedEventArgs e)
+        {
+            WindowManager.ShowWindow("EntertainmentView");
+        }
+
+        private void AdminView_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Application.Current.Shutdown();
         }
     }
 }

@@ -59,10 +59,14 @@
     <Compile Include="MVVM\RelayCommand.cs" />
     <Compile Include="MVVM\ViewModelBase.cs" />
     <Compile Include="Services\DataService.cs" />
+    <Compile Include="Services\WindowManager.cs" />
     <Compile Include="ViewModels\AdminViewModel.cs" />
     <Compile Include="ViewModels\WordSearchViewModel.cs" />
     <Compile Include="Views\AdminView.xaml.cs">
       <DependentUpon>AdminView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EntertainmentView.xaml.cs">
+      <DependentUpon>EntertainmentView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\WordSearchView.xaml.cs">
       <DependentUpon>WordSearchView.xaml</DependentUpon>
@@ -72,6 +76,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Views\AdminView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\EntertainmentView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
