@@ -178,9 +178,7 @@ namespace WpfDictionary.ViewModels
         {
             var lowerCaseSearchText = SearchText.ToLower();
             var filtered = DataService.Instance.Words.Where(w =>
-                w.Term.ToLower().Contains(lowerCaseSearchText) ||
-                w.Description.ToLower().Contains(lowerCaseSearchText) ||
-                w.Category.Name.ToLower().Contains(lowerCaseSearchText)).ToList();
+                w.Term.ToLower().StartsWith(lowerCaseSearchText)).ToList();
             FilteredWords = new ObservableCollection<Word>(filtered);
         }
 

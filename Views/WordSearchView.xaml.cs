@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using WpfDictionary.ViewModels;
 
 namespace WpfDictionary.Views
 {
@@ -22,6 +23,8 @@ namespace WpfDictionary.Views
         public WordSearchView()
         {
             InitializeComponent();
+            WordSearchViewModel wordSearchViewModel = new WordSearchViewModel();
+            this.DataContext = wordSearchViewModel;
         }
     }
 }

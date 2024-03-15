@@ -4,10 +4,14 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfDictionary.Views"
+        xmlns:MVVM="clr-namespace:WpfDictionary.MVVM"
         mc:Ignorable="d"
         Title="Caută - Dicționarul explicativ român" Height="500" Width="700"
         Icon="../Resources/Images/icon.ico">
-
+    <Window.Resources>
+        <MVVM:PathToImageSourceConverter x:Key="PathToImageSourceConverter"/>
+    </Window.Resources>
+    
     <DockPanel LastChildFill="True">
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="Caută cuvinte"/>
@@ -18,6 +22,7 @@
         <Grid Margin="10">
             <Grid.RowDefinitions>
                 <RowDefinition Height="2*"/>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="3*"/>
             </Grid.RowDefinitions>
@@ -34,24 +39,33 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="3*"/>
-                    <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <ComboBox Grid.Column="0"/>
-                <TextBox Grid.Column="1"/>
-                <Button Grid.Column="2" Content="Caută"/>
+                <ComboBox ItemsSource="{Binding Categories}" DisplayMemberPath="Name" SelectedItem="{Binding SelectedCategory}" Grid.Column="0" Margin="0 0 5 0"/>
+                <TextBox Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Margin="0 0 5 0"/>
             </Grid>
-            <Grid Grid.Row="2" Margin="0 10 0 0">
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="3*"/>
+                </Grid.ColumnDefinitions>
+                <ListView ItemsSource="{Binding FilteredWords}" SelectedItem="{Binding SelectedWord}" DisplayMemberPath="Term" Visibility="{Binding ListViewVisibility}" Grid.Column="1" Margin="0,0,5,0" Grid.ColumnSpan="2">
+                </ListView>
+            </Grid>
+            <Grid Grid.Row="3" Margin="0 10 0 0" Visibility="{Binding WordDetailsVisibility}">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="3*"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Grid.Row="0" Text="Cuvânt"/>
-                <Image Grid.Row="1" Source="../Resources/Images/Words/no-image-available.jpg" Margin="10" HorizontalAlignment="Left"/>
-                <TextBlock Grid.Row="0" Grid.Column="1" Text="Descriere"/>
+                <StackPanel Grid.Row="0">
+                    <Label Grid.Row="0" Content="{Binding SelectedWord.Term}" />
+                    <Label Grid.Row="1" Content="{Binding SelectedWord.Category.Name}"/>
+                    <Image Grid.Row="1" Source="{Binding SelectedWord.ImagePath, Converter={StaticResource PathToImageSourceConverter}}" Margin="10" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100"/>
+                </StackPanel>
+                <Label Grid.Row="0" Grid.Column="1" Content="{Binding SelectedWord.Description}"/>
             </Grid>
         </Grid>
     </DockPanel>

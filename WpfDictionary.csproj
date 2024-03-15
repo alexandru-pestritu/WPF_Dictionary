@@ -60,6 +60,7 @@
     <Compile Include="MVVM\ViewModelBase.cs" />
     <Compile Include="Services\DataService.cs" />
     <Compile Include="ViewModels\AdminViewModel.cs" />
+    <Compile Include="ViewModels\WordSearchViewModel.cs" />
     <Compile Include="Views\AdminView.xaml.cs">
       <DependentUpon>AdminView.xaml</DependentUpon>
     </Compile>
