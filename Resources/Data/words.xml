@@ -16,4 +16,12 @@
     </Category>
     <ImagePath>C:\Users\pestr\source\WpfDictionary\bin\Debug\Resources\WordImages\logo.png</ImagePath>
   </Word>
+  <Word>
+    <Term>asd</Term>
+    <Description>asdasdasd</Description>
+    <Category>
+      <Name>asdasd</Name>
+    </Category>
+    <ImagePath>pack://application:,,,/Resources/Images/Words/no-image-available.jpg</ImagePath>
+  </Word>
 </ArrayOfWord>

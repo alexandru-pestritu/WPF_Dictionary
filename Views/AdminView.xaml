@@ -43,6 +43,7 @@
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Header="Cuvânt" DisplayMemberBinding="{Binding Term}" Width="Auto"/>
+                            <GridViewColumn Header="Categorie" DisplayMemberBinding="{Binding Category.Name}" Width="Auto"/>
                             <GridViewColumn Header="Definiție" DisplayMemberBinding="{Binding Description}" Width="Auto"/>
                         </GridView>
                     </ListView.View>

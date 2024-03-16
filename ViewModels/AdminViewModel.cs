@@ -87,13 +87,14 @@ namespace WpfDictionary.ViewModels
         public string NewCategoryName
         {
             get => _newCategoryName;
-            set { _newCategoryName = value; OnPropertyChanged(); }
+            set { _newCategoryName = value; OnPropertyChanged();
+            }
         }
 
         public AdminViewModel()
         {
             FilteredWords = new ObservableCollection<Word>(DataService.Instance.Words);
-            AddOrUpdateWordCommand = new RelayCommand(_ => AddOrUpdateWord());
+            AddOrUpdateWordCommand = new RelayCommand(_ => AddOrUpdateWord(), _ => CanAddOrUpdateWord());
             DeleteWordCommand = new RelayCommand(_ => DeleteWord(), _ => SelectedWord != null);
             LoadImageCommand = new RelayCommand(_ => LoadImage());
             FilterWords();
@@ -201,6 +202,10 @@ namespace WpfDictionary.ViewModels
 
                 WordImagePath = destinationPath;
             }
+        }
+        private bool CanAddOrUpdateWord()
+        {
+            return !string.IsNullOrWhiteSpace(WordTerm) && !string.IsNullOrWhiteSpace(WordDescription) && (SelectedCategory != null || !string.IsNullOrWhiteSpace(NewCategoryName));
         }
 
     }
