@@ -15,6 +15,7 @@ namespace WpfDictionary.ViewModels
     {
         private ObservableCollection<Word> _filteredWords;
         private Word _selectedWord;
+        private Word _selectedWordCopy;
         private string _searchText = "";
         private Category _selectedCategory;
         private Visibility _listViewVisibility = Visibility.Collapsed;
@@ -38,9 +39,25 @@ namespace WpfDictionary.ViewModels
                 OnPropertyChanged();
                 if(value!=null)
                 {
-                    ListViewVisibility = Visibility.Collapsed;
-                    WordDetailsVisibility = Visibility.Visible;
+                    SelectedWordCopy = new Word
+                    {
+                        Term = value.Term,
+                        Description = value.Description,
+                        Category = value.Category,
+                        ImagePath = value.ImagePath
+                    };
+                    ResetSearchAndCategory();
                 }
+            }
+        }
+
+        public Word SelectedWordCopy
+        {
+            get => _selectedWordCopy;
+            set
+            {
+                _selectedWordCopy = value;
+                OnPropertyChanged();
             }
         }
 
@@ -52,8 +69,16 @@ namespace WpfDictionary.ViewModels
                 _searchText = value;
                 OnPropertyChanged();
                 FilterWords();
-                ListViewVisibility = Visibility.Visible;
-                WordDetailsVisibility = Visibility.Collapsed;
+                if (string.IsNullOrEmpty(SearchText))
+                {
+                    ListViewVisibility = Visibility.Collapsed;
+                    WordDetailsVisibility = Visibility.Visible;
+                }
+                else
+                {
+                    ListViewVisibility = Visibility.Visible;
+                    WordDetailsVisibility = Visibility.Collapsed;
+                }
             }
         }
 
@@ -111,6 +136,16 @@ namespace WpfDictionary.ViewModels
             {
                 FilteredWords.Clear();
             }
+        }
+
+        private void ResetSearchAndCategory()
+        {
+            SearchText = string.Empty;
+            OnPropertyChanged(nameof(SearchText));
+            SelectedCategory = null;
+            OnPropertyChanged(nameof(SelectedCategory));
+            ListViewVisibility = Visibility.Collapsed;
+            WordDetailsVisibility = Visibility.Visible;
         }
     }
 }
