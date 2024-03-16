@@ -36,7 +36,7 @@ namespace WpfDictionary.Views
 
         private void MenuItem_Click_1(object sender, RoutedEventArgs e)
         {
-            WindowManager.ShowWindow("AdminView");
+            WindowManager.ShowWindow("LoginView");
         }
 
         private void WordSearchView_Closing(object sender, System.ComponentModel.CancelEventArgs e)

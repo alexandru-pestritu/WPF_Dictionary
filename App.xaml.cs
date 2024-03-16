@@ -17,10 +17,10 @@ namespace WpfDictionary
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
-            Application.Current.ShutdownMode = ShutdownMode.OnLastWindowClose;
             WindowManager.WordSearchView = new Views.WordSearchView();
             WindowManager.AdminView = new Views.AdminView();
             WindowManager.EntertainmentView = new Views.EntertainmentView();
+            WindowManager.LoginView = new Views.LoginView();
             WindowManager.ShowWindow("WordSearchView");
         }
 

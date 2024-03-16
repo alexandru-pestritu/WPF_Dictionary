@@ -14,6 +14,8 @@ namespace WpfDictionary.Services
 
         public static EntertainmentView EntertainmentView { get; set; }
 
+        public static LoginView LoginView { get; set; }
+
         public static void ShowWindow(string windowName)
         {
             HideAll();
@@ -31,6 +33,10 @@ namespace WpfDictionary.Services
                     EntertainmentView = new EntertainmentView();
                     EntertainmentView.Show();
                     break;
+                case "LoginView":
+                    LoginView = new LoginView();
+                    LoginView.Show();
+                    break;
                 default:
                     break;
             }
@@ -41,6 +47,7 @@ namespace WpfDictionary.Services
             WordSearchView?.Hide();
             AdminView?.Hide();
             EntertainmentView?.Hide();
+            LoginView?.Hide();
         }
     }
 }

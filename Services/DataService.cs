@@ -14,9 +14,11 @@ namespace WpfDictionary.Services
     {
         private const string WordsFilePath = "C:\\Users\\pestr\\source\\WpfDictionary\\Resources\\Data\\words.xml";
         private const string CategoriesFilePath = "C:\\Users\\pestr\\source\\WpfDictionary\\Resources\\Data\\categories.xml";
+        private const string UsersFilePath = "C:\\Users\\pestr\\source\\WpfDictionary\\Resources\\Data\\users.xml";
 
         public ObservableCollection<Word> Words { get; private set; }
         public ObservableCollection<Category> Categories { get; private set; }
+        public ObservableCollection<User> Users { get; private set; }
 
         private static DataService _instance;
         public static DataService Instance => _instance ?? (_instance = new DataService());
@@ -25,9 +27,11 @@ namespace WpfDictionary.Services
         {
             Words = DeserializeFromFile<ObservableCollection<Word>>(WordsFilePath) ?? new ObservableCollection<Word>();
             Categories = DeserializeFromFile<ObservableCollection<Category>>(CategoriesFilePath) ?? new ObservableCollection<Category>();
+            Users = DeserializeFromFile<ObservableCollection<User>>(UsersFilePath) ?? new ObservableCollection<User>();
 
             Words.CollectionChanged += (s, e) => SerializeToFile(WordsFilePath, Words);
             Categories.CollectionChanged += (s, e) => SerializeToFile(CategoriesFilePath, Categories);
+            Users.CollectionChanged += (s, e) => SerializeToFile(UsersFilePath, Users);
         }
 
         private void SerializeToFile<T>(string filePath, T data)
