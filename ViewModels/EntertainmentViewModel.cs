@@ -119,6 +119,7 @@ namespace WpfDictionary.ViewModels
             _currentWordIndex = 0;
             GameProgress = 0;
             Score = 0;
+            UserInput = string.Empty;
             UpdateCurrentWordSettings();
             IsCheckWordButtonEnabled = true;
             IsNextButtonEnabled = false;
@@ -148,6 +149,7 @@ namespace WpfDictionary.ViewModels
             else
                 if(_nextButtonText == "Finalizează")
             {
+                MessageBox.Show($"Jocul s-a terminat! Ai obținut {Score} puncte.", "Sfârșitul jocului", MessageBoxButton.OK, MessageBoxImage.Information);
                 ResetGame();
             }
                 

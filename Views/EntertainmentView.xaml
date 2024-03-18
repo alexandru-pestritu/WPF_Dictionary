@@ -28,17 +28,36 @@
             </Grid.RowDefinitions>
             <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center">
                 <Label Content="Progres:" Margin="0 0 5 0"/>
-                <ProgressBar Value="{Binding GameProgress}" MinWidth="300" Minimum="0" Maximum="5" Height="10"/>
+                <ProgressBar Value="{Binding GameProgress}" MinWidth="300" Minimum="0" Maximum="5" Height="10" Foreground="#00852a"/>
             </StackPanel>
             <StackPanel Grid.Row="1" Orientation="Vertical" HorizontalAlignment="Center">
-                <TextBlock Visibility="{Binding DescriptionVisibility}" Text="{Binding CurrentWord.Description}"/>
-                <Image Visibility="{Binding ImageVisibility}" Source="{Binding CurrentWord.ImagePath, Converter={StaticResource PathToImageSourceConverter}}" Height="100"/>
+                <Label Content="Ghicește cuvântul:" FontWeight="Medium" FontSize="15" HorizontalAlignment="Center"/>
+                <TextBlock Visibility="{Binding DescriptionVisibility}" Text="{Binding CurrentWord.Description}" HorizontalAlignment="Center" Margin="0 5 0 0"/>
+                <Image Visibility="{Binding ImageVisibility}" Source="{Binding CurrentWord.ImagePath, Converter={StaticResource PathToImageSourceConverter}}" Height="100" HorizontalAlignment="Center" Margin="0 5 0 0"/>
             </StackPanel>
             <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 10 0 0">
                 <Label Content="Introdu cuvântul:" Margin="0 0 5 0"/>
-                <TextBox Text="{Binding UserInput, UpdateSourceTrigger=PropertyChanged}" Height="20" Width="200" Margin="0 0 10 0"/>
-                <Button Command="{Binding CheckWordCommand}" Content="Verifică" IsEnabled="{Binding IsCheckWordButtonEnabled}" Margin="0 0 10 0"/>
-                <Button Command="{Binding NextWordCommand}" Content="{Binding NextButtonText}" IsEnabled="{Binding IsNextButtonEnabled}" Margin="0 0 0 0"/>
+                <TextBox Text="{Binding UserInput, UpdateSourceTrigger=PropertyChanged}" Height="25" Width="200" Margin="0 0 10 0" BorderThickness="2" Padding="5 2 0 0">
+                    <TextBox.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="8"/>
+                    </Style>
+                    </TextBox.Resources>
+                </TextBox>
+                <Button Command="{Binding CheckWordCommand}" Content="Verifică" IsEnabled="{Binding IsCheckWordButtonEnabled}" Margin="0 0 10 0" Background="#00852a" Foreground="White" BorderThickness="0" Padding="10 5 10 5">
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="8"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+                <Button Command="{Binding NextWordCommand}" Content="{Binding NextButtonText}" IsEnabled="{Binding IsNextButtonEnabled}" Margin="0 0 0 0" Background="#ffc107" BorderThickness="0" Padding="10 5 10 5">
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="8"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
             </StackPanel>
             <StackPanel Grid.Row="3" HorizontalAlignment="Center">
                 <TextBlock Text="{Binding Score, StringFormat='Scor: {0}'}" Margin="0 10 0 0"/>
