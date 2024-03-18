@@ -30,7 +30,13 @@
                     <ColumnDefinition Width="6*"/>
                 </Grid.ColumnDefinitions>
                 <Label Grid.Column="0" Content="Caută:" Margin="0 0 10 0" HorizontalAlignment="Right"/>
-                <TextBox Grid.Column="1" Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" Margin="10 0 10 0" Height="20"/>
+                <TextBox Grid.Column="1" Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" Margin="10 0 10 0" Height="20" BorderThickness="2" Padding="5 0 0 2">
+                    <TextBox.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="8"/>
+                        </Style>
+                    </TextBox.Resources>
+                </TextBox>
             </Grid>
 
             <Grid Grid.Row="1">
@@ -49,21 +55,57 @@
                 </ListView>
                 <StackPanel Grid.Column="1" Orientation="Vertical" Margin="10">
                     <Label Content="Imagine (opțional)" Height="30"/>
-                    <Button Command="{Binding LoadImageCommand}" Content="Încarcă imagine" Height="20" Margin="10 0 10 0"/>
+                    <Button Command="{Binding LoadImageCommand}" Content="Încarcă imagine" Height="20" Margin="10 0 10 0" Background="#ffc107" BorderThickness="0">
+                        <Button.Resources>
+                            <Style TargetType="{x:Type Border}">
+                                <Setter Property="CornerRadius" Value="8"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
                     <Image Source="{Binding WordImagePath, Converter={StaticResource PathToImageSourceConverter}}" Height="100" Margin="0,10,0,10"/>
                     <Label Content="Cuvânt*" Height="30"/>
-                    <TextBox Text="{Binding WordTerm, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,10" Height="20"/>
+                    <TextBox Text="{Binding WordTerm, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,10" Height="20" BorderThickness="2" Padding="5 0 0 2">
+                        <TextBox.Resources>
+                            <Style TargetType="{x:Type Border}">
+                                <Setter Property="CornerRadius" Value="8"/>
+                            </Style>
+                        </TextBox.Resources>
+                    </TextBox>
                     <Label Content="Selectează categoria*" Height="30"/>
                     <ComboBox ItemsSource="{Binding Categories}" DisplayMemberPath="Name" SelectedItem="{Binding SelectedCategory}" Margin="0,0,0,10" Height="20"/>
                     <Label Content="SAU" Height="30" HorizontalAlignment="Center"/>
                     <Label Content="Adaugă categorie nouă*" Height="30"/>
-                    <TextBox Text="{Binding NewCategoryName, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,10" Height="20"/>
+                    <TextBox Text="{Binding NewCategoryName, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,10" Height="20" BorderThickness="2" Padding="5 0 0 2">
+                        <TextBox.Resources>
+                            <Style TargetType="{x:Type Border}">
+                                <Setter Property="CornerRadius" Value="8"/>
+                            </Style>
+                        </TextBox.Resources>
+                    </TextBox>
                     <Label Content="Definiție*" Height="30"/>
-                    <TextBox Text="{Binding WordDescription, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,10" Height="50" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto"/>
+                    <TextBox Text="{Binding WordDescription, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,10" Height="50" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" BorderThickness="2" Padding="5 0 0 2">
+                        <TextBox.Resources>
+                            <Style TargetType="{x:Type Border}">
+                                <Setter Property="CornerRadius" Value="8"/>
+                            </Style>
+                        </TextBox.Resources>
+                    </TextBox>
 
                     <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center">
-                        <Button Command="{Binding AddOrUpdateWordCommand}" Content="Adaugă/Actualizează" Margin="0,0,10,0" Width="Auto" Height="30" Padding="10 5 10 5"/>
-                        <Button Command="{Binding DeleteWordCommand}" Content="Șterge" Margin="0,0,10,0" Width="Auto" Height="30" Padding="10 5 10 5"/>
+                        <Button Command="{Binding AddOrUpdateWordCommand}" Content="Adaugă/Actualizează" Margin="0,0,10,0" Width="Auto" Height="30" Padding="10 5 10 5" Background="#00852a" Foreground="White" BorderThickness="0">
+                            <Button.Resources>
+                                <Style TargetType="{x:Type Border}">
+                                    <Setter Property="CornerRadius" Value="8"/>
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+                        <Button Command="{Binding DeleteWordCommand}" Content="Șterge" Margin="0,0,10,0" Width="Auto" Height="30" Padding="10 5 10 5" Background="#ffc107" BorderThickness="0">
+                            <Button.Resources>
+                                <Style TargetType="{x:Type Border}">
+                                    <Setter Property="CornerRadius" Value="8"/>
+                                </Style>
+                            </Button.Resources>
+                        </Button>
                     </StackPanel>
                 </StackPanel>
             </Grid>
