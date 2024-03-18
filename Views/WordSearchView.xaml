@@ -41,7 +41,13 @@
                     <ColumnDefinition Width="3*"/>
                 </Grid.ColumnDefinitions>
                 <ComboBox ItemsSource="{Binding Categories}" DisplayMemberPath="Name" SelectedItem="{Binding SelectedCategory}" Grid.Column="0" Margin="0 0 5 0"/>
-                <TextBox Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Margin="0 0 5 0"/>
+                <TextBox Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" BorderThickness="2" Margin="5 0 5 2">
+                    <TextBox.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="8"/>
+                    </Style>
+                    </TextBox.Resources>
+                </TextBox>
             </Grid>
             <Grid Grid.Row="2">
                 <Grid.ColumnDefinitions>
@@ -61,11 +67,14 @@
                     <ColumnDefinition Width="3*"/>
                 </Grid.ColumnDefinitions>
                 <StackPanel Grid.Row="0">
-                    <Label Grid.Row="0" Content="{Binding SelectedWordCopy.Term}" />
-                    <Label Grid.Row="1" Content="{Binding SelectedWordCopy.Category.Name}"/>
-                    <Image Grid.Row="1" Source="{Binding SelectedWordCopy.ImagePath, Converter={StaticResource PathToImageSourceConverter}}" Margin="10" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100"/>
+                    <Label Content="Cuvânt" FontWeight="Medium" FontSize="13"/>
+                    <Label Content="{Binding SelectedWordCopy.Term}" />
+                    <Image Source="{Binding SelectedWordCopy.ImagePath, Converter={StaticResource PathToImageSourceConverter}}" Margin="10" HorizontalAlignment="Left" VerticalAlignment="Top" Width="150"/>
                 </StackPanel>
-                <Label Grid.Row="0" Grid.Column="1" Content="{Binding SelectedWordCopy.Description}"/>
+                <StackPanel Grid.Row="0" Grid.Column="1">
+                <Label Content="Descriere" FontWeight="Medium" FontSize="13"/>
+                <Label  Content="{Binding SelectedWordCopy.Description}"/>
+                </StackPanel>
             </Grid>
         </Grid>
     </DockPanel>
