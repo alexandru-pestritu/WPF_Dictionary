@@ -145,11 +145,13 @@ namespace WpfDictionary.ViewModels
             }
             else
             {
+                DataService.Instance.Words.Remove(SelectedWord);
                 SelectedWord.Term = WordTerm;
                 SelectedWord.Description = WordDescription;
                 
                 SelectedWord.ImagePath = WordImagePath;
                 SelectedWord.Category = category;
+                DataService.Instance.Words.Add(SelectedWord);
             }
             ClearFields();
             FilterWords();
@@ -180,6 +182,7 @@ namespace WpfDictionary.ViewModels
             var lowerCaseSearchText = SearchText.ToLower();
             var filtered = DataService.Instance.Words.Where(w =>
                 w.Term.ToLower().StartsWith(lowerCaseSearchText)).ToList();
+            filtered.Sort((w1, w2) => w1.Term.CompareTo(w2.Term));
             FilteredWords = new ObservableCollection<Word>(filtered);
         }
 
