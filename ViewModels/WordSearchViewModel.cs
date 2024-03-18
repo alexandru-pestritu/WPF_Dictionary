@@ -141,9 +141,7 @@ namespace WpfDictionary.ViewModels
         private void ResetSearchAndCategory()
         {
             SearchText = string.Empty;
-            OnPropertyChanged(nameof(SearchText));
             SelectedCategory = null;
-            OnPropertyChanged(nameof(SelectedCategory));
             ListViewVisibility = Visibility.Collapsed;
             WordDetailsVisibility = Visibility.Visible;
         }

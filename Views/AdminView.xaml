@@ -11,8 +11,7 @@
     <Window.Resources>
         <MVVM:PathToImageSourceConverter x:Key="PathToImageSourceConverter"/>
     </Window.Resources>
-
-
+   
     <DockPanel LastChildFill="True">
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="Caută cuvinte" Click="MenuItem_Click"/>

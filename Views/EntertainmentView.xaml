@@ -4,10 +4,14 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfDictionary.Views"
+        xmlns:MVVM="clr-namespace:WpfDictionary.MVVM"
         mc:Ignorable="d"
         Title="Divertisment - Dicționarul explicativ român" Height="500" Width="700"
         Icon="../Resources/Images/icon.ico">
-
+    <Window.Resources>
+        <MVVM:PathToImageSourceConverter x:Key="PathToImageSourceConverter"/>
+    </Window.Resources>
+    
     <DockPanel LastChildFill="True">
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="Caută cuvinte" Click="MenuItem_Click"/>
@@ -24,21 +28,21 @@
             </Grid.RowDefinitions>
             <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center">
                 <Label Content="Progres:" Margin="0 0 5 0"/>
-                <ProgressBar Minimum="0" Maximum="5" Height="20"/>
+                <ProgressBar Value="{Binding GameProgress}" MinWidth="300" Minimum="0" Maximum="5" Height="10"/>
             </StackPanel>
             <StackPanel Grid.Row="1" Orientation="Vertical" HorizontalAlignment="Center">
-                <TextBlock Text="Descriere"/>
-                <Image Source="../Resources/Images/icon.ico" Height="200"/>
+                <TextBlock Visibility="{Binding DescriptionVisibility}" Text="{Binding CurrentWord.Description}"/>
+                <Image Visibility="{Binding ImageVisibility}" Source="{Binding CurrentWord.ImagePath, Converter={StaticResource PathToImageSourceConverter}}" Height="100"/>
             </StackPanel>
             <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 10 0 0">
                 <Label Content="Introdu cuvântul:" Margin="0 0 5 0"/>
-                <TextBox Height="20" Width="200"/>
+                <TextBox Text="{Binding UserInput, UpdateSourceTrigger=PropertyChanged}" Height="20" Width="200" Margin="0 0 10 0"/>
+                <Button Command="{Binding CheckWordCommand}" Content="Verifică" IsEnabled="{Binding IsCheckWordButtonEnabled}" Margin="0 0 10 0"/>
+                <Button Command="{Binding NextWordCommand}" Content="{Binding NextButtonText}" IsEnabled="{Binding IsNextButtonEnabled}" Margin="0 0 0 0"/>
             </StackPanel>
-            <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 10 0 0">
-                <Button Content="Înapoi" Margin="0 0 10 0"/>
-                <Button Content="Înainte" Margin="0 0 0 0"/>
+            <StackPanel Grid.Row="3" HorizontalAlignment="Center">
+                <TextBlock Text="{Binding Score, StringFormat='Scor: {0}'}" Margin="0 10 0 0"/>
             </StackPanel>
-            <TextBlock Grid.Row="4" Text="Scor:" HorizontalAlignment="Center" Margin="0 10 0 0"/>
         </Grid>
     </DockPanel>
 </Window>
