@@ -133,8 +133,10 @@ namespace WpfDictionary.ViewModels
                 {
                     WordImagePath = "pack://application:,,,/Resources/Images/Words/no-image-available.jpg";
                 }
-
-                var newWord = new Word
+                var existingWord = DataService.Instance.Words.FirstOrDefault(w => w.Term.ToLower() == WordTerm.ToLower());
+                if (existingWord == null)
+                {
+                    var newWord = new Word
                     {
                         Term = WordTerm,
                         Description = WordDescription,
@@ -142,6 +144,7 @@ namespace WpfDictionary.ViewModels
                         Category = category
                     };
                     DataService.Instance.Words.Add(newWord);
+                }
             }
             else
             {
